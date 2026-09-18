@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var closeBtn = document.querySelector('.mn-close');
 
   function openDrawer(){
+    if (!drawer || !scrim) return;
     drawer.classList.add('is-open');
     scrim.classList.add('is-open');
     burger.classList.add('is-open');
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.style.overflow='hidden';
   }
   function closeDrawer(){
+    if (!drawer || !scrim) return;
     drawer.classList.remove('is-open');
     scrim.classList.remove('is-open');
     burger.classList.remove('is-open');
