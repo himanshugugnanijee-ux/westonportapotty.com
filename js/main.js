@@ -74,9 +74,9 @@ document.addEventListener('DOMContentLoaded', function () {
       var submitButton = form.querySelector('button[type="submit"]');
       var originalButtonText = submitButton ? submitButton.innerHTML : '';
       var formData = new FormData(form);
-      formData.append('access_key', '57afe272-0060-431d-bd75-d9044f149478');
-      formData.append('subject', 'New quote request from westonportapotty.com');
-      formData.append('from_name', 'Weston Porta Potty Website');
+      if (!formData.has('access_key')) formData.append('access_key', '57afe272-0060-431d-bd75-d9044f149478');
+      if (!formData.has('subject')) formData.append('subject', 'New quote request from westonportapotty.com');
+      if (!formData.has('from_name')) formData.append('from_name', 'Weston Porta Potty Website');
 
       if (submitButton) {
         submitButton.disabled = true;
