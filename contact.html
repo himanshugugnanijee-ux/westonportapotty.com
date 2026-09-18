@@ -223,7 +223,10 @@
           <span class="eyebrow">Free Quote Request</span>
           <h2 style="font-size:1.7rem">Tell Us About Your Job</h2>
           <p class="lede" style="margin-bottom:24px">Fill this out and we'll respond with pricing and availability — usually within one business hour during dispatch hours.</p>
-          <form data-quote-form>
+          <form data-quote-form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="57afe272-0060-431d-bd75-d9044f149478">
+            <input type="hidden" name="subject" value="New quote request from westonportapotty.com">
+            <input type="hidden" name="from_name" value="Weston Porta Potty Website">
             <div class="form-row" style="grid-template-columns:1fr 1fr">
               <div><label for="name">Full Name</label><input id="name" name="name" type="text" required placeholder="Jane Rodriguez"></div>
               <div><label for="phone">Phone Number</label><input id="phone" name="phone" type="tel" required placeholder="(754) 555-0123"></div>
@@ -251,7 +254,7 @@
             <div class="form-row">
               <div><label for="message">Job Details</label><textarea id="message" name="message" placeholder="Number of units, event or job type, rental length, any access notes..."></textarea></div>
             </div>
-            <label class="consent"><input type="checkbox" required> I agree to be contacted by RapidClean Portable Toilet Rental Works about this request.</label>
+            <label class="consent"><input type="checkbox" name="consent" value="Agreed" required> I agree to be contacted by RapidClean Portable Toilet Rental Works about this request.</label>
             <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:18px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h8l4 4v14h-12z"/><path d="M14.3 3v4.2h4"/><path d="M9 12.5h6M9 15.7h6M9 9.3h2.5"/></svg> Request My Free Quote</button>
             <p class="form-note">Prefer to talk now? Call <a href="tel:+17548126001" style="color:var(--blue-700);font-weight:700">(754) 812-6001</a> — Mon–Sat, 7am–7pm.</p>
             <div class="form-success" style="display:none;margin-top:16px;padding:16px;background:var(--mint-100);border-radius:10px;color:#0f5940;font-weight:600">
