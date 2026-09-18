@@ -66,14 +66,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* Quote / contact form — client-side confirmation (no backend wired) */
+  /* Quote / contact form — submit through Web3Forms */
   document.querySelectorAll('form[data-quote-form]').forEach(function(form){
-    form.addEventListener('submit', function(e){
+    form.addEventListener('submit', async function(e){
       e.preventDefault();
       var note = form.querySelector('.form-success');
-      form.querySelectorAll('input,select,textarea,button').forEach(function(el){ el.disabled = true; });
-      if (note) note.style.display = 'block';
-      form.scrollIntoView({behavior:'smooth', block:'center'});
+      var submitButton = form.querySelector('button[type="submit"]');
+      var originalButtonText = submitButton ? submitButton.innerHTML : '';
+      var formData = new FormData(form);
+      formData.append('access_key', '57afe272-0060-431d-bd75-d9044f149478');
+      formData.append('subject', 'New quote request from westonportapotty.com');
+      formData.append('from_name', 'Weston Porta Potty Website');
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending…';
+      }
+
+      try {
+        var response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+        var result = await response.json();
+        if (!response.ok || !result.success) throw new Error(result.message || 'Submission failed');
+
+        form.querySelectorAll('input,select,textarea,button').forEach(function(el){ el.disabled = true; });
+        if (note) note.style.display = 'block';
+        form.scrollIntoView({behavior:'smooth', block:'center'});
+      } catch (error) {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonText;
+        }
+        alert('Sorry, your request could not be sent. Please call (754) 812-6001 or try again.');
+      }
     });
   });
 
